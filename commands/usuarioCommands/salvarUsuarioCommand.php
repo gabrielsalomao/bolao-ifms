@@ -23,6 +23,4 @@ if (empty($usuario)) {
   var_dump($_SESSION['usuario']);
   header("location: /");
 }
-
-// header('location: /nova-conta');
 ?>
