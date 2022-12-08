@@ -3,7 +3,7 @@ session_start();
 
 $logado = false;
 
-if (count($_SESSION) != 0) {
+if (isset($_SESSION['usuario'])) {
     $usuario = $_SESSION['usuario'];
     $logado = $usuario != null;
 }
@@ -78,18 +78,36 @@ if (count($_SESSION) != 0) {
                     if ($logado) {
 
                         echo '
-                         <a
-                            class="me-4 py-2 text-dark text-decoration-none"
-                            href="/sair"
-                        >
-                            Meus Palpites
-                        </a>
-                        <a
-                            class="me-4 py-2 text-danger text-decoration-none"
-                            href="/sair"
-                        >
-                            Sair
-                        </a>';
+                            <a
+                                class="me-4 py-2 text-dark text-decoration-none"
+                                href="/sair"
+                            >
+                                Meus Palpites
+                            </a>';
+
+                        if ($usuario['admin']) {
+                            echo '<a
+                                    class="me-4 py-2 text-dark text-decoration-none"
+                                    href="/jogos"
+                                  >
+                                    Jogos
+                                  </a>';
+
+                            echo '<a
+                                  class="me-4 py-2 text-dark text-decoration-none"
+                                  href="/times"
+                                >
+                                  Times
+                                </a>';
+                        }
+
+                        echo '
+                            <a
+                                class="me-4 py-2 text-danger text-decoration-none"
+                                href="/sair"
+                            >
+                                Sair
+                            </a>';
                     } else {
                         echo '
                         <a
@@ -125,8 +143,12 @@ if (count($_SESSION) != 0) {
                 case '/login':
                     if ($method == 'GET') {
                         require __DIR__ . '/pages/login/index.php';
-                        break;
                     }
+
+                    if ($method == 'POST') {
+                        require __DIR__ . '/commands/usuarioCommands/realizarLoginCommand.php';
+                    }
+                    break;
                 case '/nova-conta':
                     if ($method == 'GET') {
                         require __DIR__ . '/pages/nova-conta/index.php';
@@ -137,6 +159,16 @@ if (count($_SESSION) != 0) {
                         require __DIR__ . '/commands/usuarioCommands/salvarUsuarioCommand.php';
                         break;
                     }
+                case '/times':
+                    if ($method == 'GET') {
+                        require __DIR__ . '/pages/times/index.php';
+                    }
+                    break;
+                case '/novo-time':
+                    if ($method == 'GET') {
+                        require __DIR__ . '/pages/novo-time/index.php';
+                    }
+                    break;
                 case '/sair':
                     if ($method == 'GET') {
                         session_start();

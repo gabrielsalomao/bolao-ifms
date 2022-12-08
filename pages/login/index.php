@@ -1,3 +1,14 @@
+<?php
+include_once __DIR__ . "/../../utils/error.php";
+
+$errors = array();
+
+if (isset($_SESSION['errors'])) {
+    $errors = $_SESSION['errors'];
+    unset($_SESSION['errors']);
+}
+?>
+
 <style>
     .form-signin {
         align-items: center;
@@ -15,7 +26,7 @@
         z-index: 2;
     }
 
-    .form-signin input[type="email"] {
+    .form-signin input[type="text"] {
         margin-bottom: -1px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
@@ -28,22 +39,33 @@
     }
 </style>
 <div class="form-signin">
-    <form>
+    <?php
+    if (count($errors) > 0) {
+        echo renderErrors($errors);
+    }
+    ?>
+    <form
+        class="needs-validation"
+        action="login"
+        method="post"
+        enctype="multipart/form-data"
+    >
         <h1 class="h3 mb-3 fw-normal">Login</h1>
         <div class="form-floating">
             <input
-                type="email"
+                type="text"
                 class="form-control"
-                id="email"
-                id="email"
-                placeholder="name@example.com"
+                id="login"
+                name="login"
+                placeholder="example"
             >
-            <label for="email">E-Mail</label>
+            <label for="login">Login</label>
         </div>
         <div class="form-floating">
             <input
                 type="password"
                 class="form-control"
+                required
                 id="senha"
                 name="senha"
                 placeholder="Password"

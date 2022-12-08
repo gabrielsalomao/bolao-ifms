@@ -30,7 +30,7 @@ if (isset($_SESSION['errors'])) {
 
 <div class="row g-5">
     <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Nova conta</h4>
+        <h4 class="mb-3">Novo time</h4>
         <?php
         if (count($errors) > 0) {
             echo renderErrors($errors);
@@ -45,16 +45,16 @@ if (isset($_SESSION['errors'])) {
             <div class="row g-3">
                 <div class="col-sm-12">
                     <label
-                        for="nome_completo"
+                        for="nome"
                         class="form-label"
                     >
-                        Nome completo
+                        Nome
                     </label>
                     <input
                         type="text"
                         class="form-control"
-                        id="nome_completo"
-                        name="nome_completo"
+                        id="nome"
+                        name="nome"
                         placeholder=""
                         value="<?php echo $nova_conta_form['nome_completo']; ?>"
                         required
@@ -111,3 +111,6 @@ if (isset($_SESSION['errors'])) {
         </form>
     </div>
 </div>
+
+<script>
+</script>
