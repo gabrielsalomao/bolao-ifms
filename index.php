@@ -80,7 +80,7 @@ if (isset($_SESSION['usuario'])) {
                         echo '
                             <a
                                 class="me-4 py-2 text-dark text-decoration-none"
-                                href="/sair"
+                                href="/meus-palpites"
                             >
                                 Meus Palpites
                             </a>';
@@ -135,7 +135,7 @@ if (isset($_SESSION['usuario'])) {
 
             $request = $_SERVER['REQUEST_URI'];
             $method = $_SERVER['REQUEST_METHOD'];
-            
+
             switch ($request) {
                 case '/':
                     require __DIR__ . '/pages/home/index.php';
@@ -169,6 +169,11 @@ if (isset($_SESSION['usuario'])) {
                         require __DIR__ . '/pages/jogos/index.php';
                     }
                     break;
+                case '/meus-palpites':
+                    if ($method == 'GET') {
+                        require __DIR__ . '/pages/meus-palpites/index.php';
+                    }
+                    break;
                 case '/novo-time':
                     if ($method == 'GET') {
                         require __DIR__ . '/pages/novo-time/index.php';
@@ -185,6 +190,15 @@ if (isset($_SESSION['usuario'])) {
                         require __DIR__ . '/commands/jogoCommands/adicionarJogoCommand.php';
                     }
                     break;
+                case strpos($request, '/palpitar') === 0:
+                    if ($method == 'GET') {
+                        require __DIR__ . '/pages/palpitar/index.php';
+                    }
+
+                    if ($method == 'POST') {
+                        require __DIR__ . '/commands/palpiteCommands/palpitarCommand.php';
+                    }
+                    break;
                 case strpos($request, '/times/editar') === 0:
                     if ($method == 'GET') {
                         require __DIR__ . '/pages/editar-time/index.php';
@@ -194,6 +208,24 @@ if (isset($_SESSION['usuario'])) {
                         require __DIR__ . '/commands/timeCommands/editarTimeCommand.php';
                     }
                     break;
+                case strpos($request, '/jogos/editar') === 0:
+                    if ($method == 'GET') {
+                        require __DIR__ . '/pages/editar-jogo/index.php';
+                    }
+
+                    if ($method == 'POST') {
+                        require __DIR__ . '/commands/jogoCommands/editarJogoCommand.php';
+                    }
+                    break;
+                case strpos($request, '/palpites/editar') === 0:
+                    if ($method == 'GET') {
+                        require __DIR__ . '/pages/editar-palpite/index.php';
+                    }
+
+                    if ($method == 'POST') {
+                        require __DIR__ . '/commands/palpiteCommands/editarPalpiteCommand.php';
+                    }
+                    break;
                 case strpos($request, '/times/excluir') === 0:
                     if ($method == 'GET') {
                         require __DIR__ . '/pages/excluir-time/index.php';
@@ -201,6 +233,15 @@ if (isset($_SESSION['usuario'])) {
 
                     if ($method == 'POST') {
                         require __DIR__ . '/commands/timeCommands/excluirTimeCommand.php';
+                    }
+                    break;
+                case strpos($request, '/jogos/excluir') === 0:
+                    if ($method == 'GET') {
+                        require __DIR__ . '/pages/excluir-jogo/index.php';
+                    }
+
+                    if ($method == 'POST') {
+                        require __DIR__ . '/commands/jogoCommands/excluirJogoCommand.php';
                     }
                     break;
                 case '/sair':

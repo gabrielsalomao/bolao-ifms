@@ -7,13 +7,12 @@ error_reporting(E_ALL);
 
 $errors = array();
 
-$novo_jogo_form = array();
+$novo_time_form = array();
 
-$novo_jogo_form['time1_id'] = $_POST['time1_id'];
-$novo_jogo_form['time2_id'] = $_POST['time2_id'];
-$novo_jogo_form['data_hora'] = $_POST['data_hora'];
+$novo_time_form['id'] = $_POST['id'];
 
-adicionar_jogo($novo_jogo_form);
+excluir_jogo($novo_time_form['id']);
 
 header("location: /jogos");
+
 ?>
