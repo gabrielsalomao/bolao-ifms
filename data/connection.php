@@ -3,7 +3,7 @@
 function getConnection()
 {
     try {
-        $conexao = new PDO('mysql:host=localhost;dbname=bolao-ifms;port=3306', "root", "123456");
+        $conexao = new PDO('mysql:host=localhost;dbname=bolao-ifms-db;port=3305', "root", "WhateverPassword");
         return $conexao;
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . "<br/>";

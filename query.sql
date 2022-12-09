@@ -18,4 +18,4 @@ create table usuario
     admin         tinyint(1)   not null
 );
 
-INSERT INTO `bolao-ifms`.usuario (id, nome_completo, login, senha, admin) VALUES (1, 'Gabriel Morais', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1);
+INSERT INTO `bolao-ifms-db`.usuario (id, nome_completo, login, senha, admin) VALUES (1, 'Gabriel Morais', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1);

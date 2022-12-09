@@ -28,6 +28,16 @@ if (isset($_SESSION['errors'])) {
 }
 ?>
 
+<style>
+    img {
+        object-fit: cover;
+        object-position: center;
+        border-radius: 150px;
+        width: 150px;
+        height: 150px;
+    }
+</style>
+
 <div class="row g-5">
     <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Novo time</h4>
@@ -36,77 +46,26 @@ if (isset($_SESSION['errors'])) {
             echo renderErrors($errors);
         }
         ?>
-        <form
-            class="needs-validation"
-            action="nova-conta"
-            method="post"
-            enctype="multipart/form-data"
-        >
+        <form class="needs-validation" action="nova-conta" method="post" enctype="multipart/form-data">
             <div class="row g-3">
                 <div class="col-sm-12">
-                    <label
-                        for="nome"
-                        class="form-label"
-                    >
-                        Nome
-                    </label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="nome"
-                        name="nome"
-                        placeholder=""
-                        value="<?php echo $nova_conta_form['nome_completo']; ?>"
-                        required
-                    >
-                    <div class="invalid-feedback">
-                        Valid first name is required.
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <label
-                        for="login"
-                        class="form-label"
-                    >
-                        Login
-                    </label>
-                    <input
-                        type="login"
-                        class="form-control"
-                        id="login"
-                        name="login"
-                        value="<?php echo $nova_conta_form['login']; ?>"
-                    >
+                    <img src="https://countryflagsapi.com/png/brazil" id="imagem_time" alt="...">
                 </div>
                 <div class="col-sm-12">
-                    <label
-                        for="senha"
-                        class="form-label"
-                    >
-                        Senha
+                    <label for="nome" class="form-label">
+                        Nome
                     </label>
-                    <input
-                        minlength="4"
-                        type="text"
-                        class="form-control"
-                        id="senha"
-                        name="senha"
-                        placeholder=""
-                        value=""
-                        required
-                    >
-                    <div class="invalid-feedback">
-                        Valid first name is required.
-                    </div>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="" value="<?php echo $nova_conta_form['nome_completo']; ?>" required>
+                </div>
+                <div class="col-sm-12">
+                    <label for="nome" class="form-label">
+                        Imagem
+                    </label>
+                    <input class="form-control" type="file" id="formFile">
                 </div>
             </div>
-
-            <button
-                class="my-4 w-100 btn btn-primary btn-lg"
-                type="submit"
-            >
-                Cadastrar
+            <button class="my-4 w-100 btn btn-primary btn-lg" type="submit">
+                Salvar
             </button>
         </form>
     </div>
