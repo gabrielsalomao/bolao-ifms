@@ -1,5 +1,4 @@
 <?php
-
 include_once __DIR__ . "/../../utils/error.php";
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -28,9 +27,9 @@ if (isset($_SESSION['errors'])) {
 }
 ?>
 
-<div class="row g-5">
+<div class="row g-5 d-flex justify-content-center">
     <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Nova conta</h4>
+        <h4 class="my-4 text-center">Nova conta</h4>
         <?php
         if (count($errors) > 0) {
             echo renderErrors($errors);
@@ -59,11 +58,7 @@ if (isset($_SESSION['errors'])) {
                         value="<?php echo $nova_conta_form['nome_completo']; ?>"
                         required
                     >
-                    <div class="invalid-feedback">
-                        Valid first name is required.
-                    </div>
                 </div>
-
                 <div class="col-12">
                     <label
                         for="login"
@@ -96,14 +91,10 @@ if (isset($_SESSION['errors'])) {
                         value=""
                         required
                     >
-                    <div class="invalid-feedback">
-                        Valid first name is required.
-                    </div>
                 </div>
             </div>
-
             <button
-                class="my-4 w-100 btn btn-primary btn-lg"
+                class="my-4 w-100 btn btn-primary"
                 type="submit"
             >
                 Cadastrar

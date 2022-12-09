@@ -50,7 +50,7 @@ if (isset($_SESSION['errors'])) {
         method="post"
         enctype="multipart/form-data"
     >
-        <h1 class="h3 mb-3 fw-normal">Login</h1>
+        <h4 class="my-4 text-center">Login</h4>
         <div class="form-floating">
             <input
                 type="text"

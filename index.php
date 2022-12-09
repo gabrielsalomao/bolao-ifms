@@ -117,11 +117,11 @@ if (isset($_SESSION['usuario'])) {
                             Login
                         </a>
                         <a
-                            class="btn btn-primary"
+                            class="me-4 py-2 link-primary text-decoration-none"
                             href="/nova-conta"
                             role="button"
                         >
-                            Nova conta
+                            <strong>Nova conta</strong> 
                         </a>';
                     }
                     ?>
@@ -135,7 +135,7 @@ if (isset($_SESSION['usuario'])) {
 
             $request = $_SERVER['REQUEST_URI'];
             $method = $_SERVER['REQUEST_METHOD'];
-
+            
             switch ($request) {
                 case '/':
                     require __DIR__ . '/pages/home/index.php';
@@ -164,9 +164,43 @@ if (isset($_SESSION['usuario'])) {
                         require __DIR__ . '/pages/times/index.php';
                     }
                     break;
+                case '/jogos':
+                    if ($method == 'GET') {
+                        require __DIR__ . '/pages/jogos/index.php';
+                    }
+                    break;
                 case '/novo-time':
                     if ($method == 'GET') {
                         require __DIR__ . '/pages/novo-time/index.php';
+                    }
+                    if ($method == 'POST') {
+                        require __DIR__ . '/commands/timeCommands/adicionarTimeCommand.php';
+                    }
+                    break;
+                case '/novo-jogo':
+                    if ($method == 'GET') {
+                        require __DIR__ . '/pages/novo-jogo/index.php';
+                    }
+                    if ($method == 'POST') {
+                        require __DIR__ . '/commands/jogoCommands/adicionarJogoCommand.php';
+                    }
+                    break;
+                case strpos($request, '/times/editar') === 0:
+                    if ($method == 'GET') {
+                        require __DIR__ . '/pages/editar-time/index.php';
+                    }
+
+                    if ($method == 'POST') {
+                        require __DIR__ . '/commands/timeCommands/editarTimeCommand.php';
+                    }
+                    break;
+                case strpos($request, '/times/excluir') === 0:
+                    if ($method == 'GET') {
+                        require __DIR__ . '/pages/excluir-time/index.php';
+                    }
+
+                    if ($method == 'POST') {
+                        require __DIR__ . '/commands/timeCommands/excluirTimeCommand.php';
                     }
                     break;
                 case '/sair':

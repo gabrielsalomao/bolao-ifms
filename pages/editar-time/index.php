@@ -1,9 +1,14 @@
 <?php
 
 include_once __DIR__ . "/../../utils/error.php";
+include_once __DIR__ . "/../../repositories/timeRepository.php";
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+$id = $_GET['id'];
+$time = obter_time_por_id($id);
 
 $errors = array();
 
@@ -25,7 +30,7 @@ if (isset($_SESSION['errors'])) {
 
 <div class="row g-5 d-flex justify-content-center">
     <div class="col-md-7">
-        <h2 class="my-4 text-center">Novo time</h2>
+        <h2 class="my-4 text-center">Editar time</h2>
         <?php
         if (count($errors) > 0) {
             echo renderErrors($errors);
@@ -33,19 +38,39 @@ if (isset($_SESSION['errors'])) {
         ?>
         <form
             class="needs-validation"
-            action="novo-time"
+            action="editar-time"
             method="post"
             enctype="multipart/form-data"
         >
             <div class="row g-3">
                 <div class=" d-flex justify-content-center">
                     <img
-                        hidden
+                        src="../../uploads/imagens/time/<?php echo $time['imagem'] ?>"
                         id="imagem_time"
                         alt="Imagem do time"
                     >
                 </div>
                 <div class="col-sm-12">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="id"
+                        name="id"
+                        placeholder=""
+                        required
+                        hidden
+                        value="<?php echo $time['id'] ?>"
+                    >
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="imagem"
+                        name="imagem"
+                        placeholder=""
+                        required
+                        hidden
+                        value="<?php echo $time['imagem'] ?>"
+                    >
                     <label
                         for="nome"
                         class="form-label"
@@ -59,6 +84,7 @@ if (isset($_SESSION['errors'])) {
                         name="nome"
                         placeholder=""
                         required
+                        value="<?php echo $time['nome'] ?>"
                     >
                 </div>
                 <div class="col-sm-12">
@@ -69,7 +95,6 @@ if (isset($_SESSION['errors'])) {
                         Imagem
                     </label>
                     <input
-                        required
                         class="form-control"
                         type="file"
                         id="imagem_time_upload"
