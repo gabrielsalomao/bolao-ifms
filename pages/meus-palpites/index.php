@@ -11,17 +11,6 @@ if (!isset($palpites)) {
     $palpites = array();
 }
 
-// function findObjectById($jogo_id)
-// {  
-// $array = array( /* your array of objects with ids as keys */ );
-
-//     foreach ($jogos as $jogo) {
-//         $jogo
-//     }
-
-//     return false;
-// }
-
 ?>
 
 <style>
@@ -92,7 +81,7 @@ if (!isset($palpites)) {
                         >
                             Editar palpite
                         </a>" :
-                       "<a
+                    "<a
                             href='/palpitar?jogo_id={$jogo['id']}'
                             class='link-primary fs-5 text-decoration-none'
                         >

@@ -45,7 +45,8 @@ function obter_todos_jogos()
        j.time2_placar
     from jogo j
             join time t1 on j.time1_id = t1.id
-            join time t2 on j.time2_id = t2.id;";
+            join time t2 on j.time2_id = t2.id
+    order by j.data_hora desc;";
     $sentenca = $conexao->query($sql, PDO::FETCH_ASSOC);
     $dados = $sentenca->fetchAll();
     $conexao = null;

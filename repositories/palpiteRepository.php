@@ -27,6 +27,26 @@ function obter_palpites_por_usuario_id($usuario_id)
     return $dados;
 }
 
+function obter_todos_palpites()
+{
+    $conexao = getConnection();
+    $sql = "
+    select p.id         as palpite_id,
+        p.jogo_id       as palpite_jogo_id,
+        p.time1_placar  as palpite_time1_placar,
+        p.time2_placar  as palpite_time2_placar,
+        u.nome_completo as usuario_nome_completo
+    from palpite p
+        join usuario u on u.id = p.usuario_id;";
+
+    $sentenca = $conexao->prepare($sql);
+    $sentenca->execute();
+    $dados = $sentenca->fetchAll();
+    $conexao = null;
+
+    return $dados;
+}
+
 function obter_palpite_por_id($id)
 {
     $conexao = getConnection();
